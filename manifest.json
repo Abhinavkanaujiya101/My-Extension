@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Apex OS",
-  "description": "High-performance terminal dashboard with dual-thermal monitoring and power analytics.",
+  "description": "High-performance terminal dashboard with dual-thermal monitoring by Apex Labs.",
   "version": "1.5",
   "permissions": [
     "storage",
@@ -11,10 +11,6 @@
     "https://api.open-meteo.com/*",
     "https://api.bigdatacloud.net/*"
   ],
-  "icons": {
-    "48": "icons/icon(1).png",
-    "128": "icons/icon(2).png"
-  },
   "chrome_url_overrides": {
     "newtab": "homepage.html"
   }
