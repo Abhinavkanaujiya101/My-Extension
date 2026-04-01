@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apex OS | Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background: #000; margin: 0; padding: 0; }
+
+        #nexus-wrapper {
+            transform: scale(0.9); transform-origin: center center;
+            width: 111.11%; height: 111.11%;
+            position: absolute; top: -5.55%; left: -5.55%;
+            display: flex;
+        }
+
+        /* FIXED BLUR: Lowered Alpha (0.4) so the wallpaper shows through */
+        .glass-sidebar {
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(40px) saturate(150%);
+            -webkit-backdrop-filter: blur(40px) saturate(150%);
+            border-right: 2px solid rgba(131, 130, 130, 0);
+        }
+
+        .ring-base { stroke: rgba(117, 82, 82, 0.05); fill: transparent; }
+        .ring-progress {
+            fill: transparent; stroke-linecap: round;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: rotate(-90deg); transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="h-screen overflow-hidden">
+    <div class="fixed inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=2564&auto=format&fit=crop" 
+             class="w-full h-full object-cover">
+    </div>
+
+    <div id="nexus-wrapper" class="relative z-10">
+        <aside class="w-[450px] h-full glass-sidebar p-16 flex flex-col justify-between">
+            <div class="space-y-12 text-white">
+                <div>
+                    <h1 id="clock" class="text-8xl font-black tracking-tighter leading-none mb-2">00:00</h1>
+                    <p id="current-date" class="text-[10px] uppercase tracking-[0.5em] opacity-51 font-bold">SYSTEM ACTIVE</p>
+                </div>
+
+                <div class="space-y-10">
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-36 h-36">
+                            <svg class="w-36 h-36">
+                                <circle class="ring-base" stroke-width="10" r="60" cx="72" cy="72"/>
+                                <circle id="battery-ring" class="ring-progress stroke-blue-500" stroke-width="10" stroke-dasharray="377" stroke-dashoffset="377" r="60" cx="72" cy="72"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span id="battery-percent" class="text-2xl font-black">--%</span>
+                                <span class="text-[9px] opacity-90 font-bold uppercase">Battery</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between px-4">
+                        <div class="flex flex-col items-center">
+                            <div class="relative w-24 h-24">
+                                <svg class="w-24 h-24">
+                                    <circle class="ring-base" stroke-width="6" r="40" cx="48" cy="48"/>
+                                    <circle id="temp-ring" class="ring-progress stroke-emerald-500" stroke-width="6" stroke-dasharray="251" stroke-dashoffset="0" r="40" cx="48" cy="48"/>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-sm font-black">51°C</span>
+                                    <span class="text-[7px] opacity-90 font-bold uppercase">CPU</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <div class="relative w-24 h-24">
+                                <svg class="w-24 h-24">
+                                    <circle class="ring-base" stroke-width="6" r="40" cx="48" cy="48"/>
+                                    <circle id="loc-ring" class="ring-progress stroke-amber-500" stroke-width="6" stroke-dasharray="251" stroke-dashoffset="251" r="40" cx="48" cy="48"/>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-1">
+                                    <span id="local-temp" class="text-sm font-black leading-none">--°C</span>
+                                    <span id="location-label" class="text-[7px] opacity-90 font-bold uppercase tracking-tighter mt-1 truncate w-full max-w-[60px]">REGION</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="opacity-20 text-[9px] tracking-[1em] uppercase font-black text-white">Apex OS</div>
+        </aside>
+
+        <main class="flex-1 p-24 flex flex-col justify-center bg-transparent">
+            <div class="max-w-xl mx-auto w-full">
+                <form action="https://www.google.com/search" method="GET" class="mb-20">
+                    <input type="text" name="q" placeholder="GOOGLE SEARCH..." autocomplete="off"
+                           class="w-full py-5 px-11 rounded-2xl bg-white/5 border border-yellow/10 text-white text-2xl placeholder:text-black/500 focus:ring-2 focus:ring-green-500/50 outline-none transition-all">
+                </form>
+                <div id="link-grid" class="grid grid-cols-2 gap-4"></div>
+                <button id="add-link-btn" class="mt-12 mx-auto block text-[10px] text-white/20 hover:text-white uppercase tracking-[0.5em] font-bold">+ ADD NEW</button>
+            </div>
+        </main>
+    </div>
+    <script src="homepage.js"></script>
+</body>
+</html>
