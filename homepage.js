@@ -10,6 +10,7 @@ function updateClock() {
     document.getElementById('clock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 }
 
+
 async function initAnalytics() {
     // 1. Battery System (r=65 -> circ ~408.4)
     if ('getBattery' in navigator) {
